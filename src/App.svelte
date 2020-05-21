@@ -1,8 +1,25 @@
 <script>
+  let strength = 0;
+  let validations = [];
+  let showPassword = false;
 
+  function validatePassword(e) {
+    const password = e.target.value;
+
+    validations = [
+      password.length > 5,
+      password.search(/[A-Z]/) > -1,
+      password.search(/[0-9]/) > -1,
+      password.search(/[!@#$%^&*]/) > -1
+    ];
+
+    strength = validations.reduce(
+		(acc, current) => acc + current);
+  }
 </script>
 
 <style>
+
   form {
     --text-color: #afafaf;
     max-width: 500px;
@@ -43,7 +60,7 @@
     transition: box-shadow 500ms;
     box-shadow: inset 0px 20px #1f1f1f;
   }
-  .bar-shadow {
+  .bar-show {
     box-shadow: none;
   }
   .label {
@@ -108,23 +125,23 @@
     </div>
 
     <div class="field">
-      <input type="password" name="password" placeholder="" class="input" />
+      <input type="password" name="password" placeholder="" class="input" on:input={validatePassword}/>
       <label for="password" class="label">Password</label>
     </div>
 
     <div class="strength">
-      <span class="bar bar-1" />
-      <span class="bar bar-2" />
-      <span class="bar bar-3" />
-      <span class="bar bar-4" />
+      <span class="bar bar-1" class:bar-show={strength > 0}/>
+      <span class="bar bar-2" class:bar-show={strength > 1}/>
+      <span class="bar bar-3" class:bar-show={strength > 2}/>
+      <span class="bar bar-4" class:bar-show={strength > 3}/>
 
     </div>
 
     <ul>
-      <li>Must be at least 6 characters</li>
-      <li>Must contain a capital letter</li>
-      <li>Must contain a number</li>
-      <li>Must contain a special character</li>
+      <li>{validations[0] ? '✔️' : '❌'} Must be at least 6 characters</li>
+      <li>{validations[1] ? '✔️' : '❌'} Must contain a capital letter</li>
+      <li>{validations[2] ? '✔️' : '❌'} Must contain a number</li>
+      <li>{validations[3] ? '✔️' : '❌'} Must contain a special character</li>
 
     </ul>
 
