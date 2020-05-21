@@ -19,7 +19,33 @@
     color: var(--text-color);
     font-size: 1.2rem;
   }
-
+  .strength {
+    display: flex;
+    height: 20px;
+    width: 100%;
+  }
+  .bar-1 {
+    background: linear-gradient(to right, red, orangered);
+  }
+  .bar-2 {
+    background: linear-gradient(to right, orangered, yellow);
+  }
+  .bar-3 {
+    background: linear-gradient(to right, yellow, yellowgreen);
+  }
+  .bar-4 {
+    background: linear-gradient(to right, yellowgreen, green);
+  }
+  .bar {
+    margin-right: 5px;
+    height: 100%;
+    width: 25%;
+    transition: box-shadow 500ms;
+    box-shadow: inset 0px 20px #1f1f1f;
+  }
+  .bar-shadow {
+    box-shadow: none;
+  }
   .label {
     z-index: -1;
     position: absolute;
@@ -28,7 +54,7 @@
     transition: transform 400ms;
   }
   .field:focus-within .label,
-  .input:not(:placeholder-shown) + .label{
+  .input:not(:placeholder-shown) + .label {
     transform: scale(0.8) translateY(-5rem);
   }
 
@@ -85,6 +111,22 @@
       <input type="password" name="password" placeholder="" class="input" />
       <label for="password" class="label">Password</label>
     </div>
+
+    <div class="strength">
+      <span class="bar bar-1" />
+      <span class="bar bar-2" />
+      <span class="bar bar-3" />
+      <span class="bar bar-4" />
+
+    </div>
+
+    <ul>
+      <li>Must be at least 6 characters</li>
+      <li>Must contain a capital letter</li>
+      <li>Must contain a number</li>
+      <li>Must contain a special character</li>
+
+    </ul>
 
   </form>
 </main>
