@@ -25,8 +25,21 @@
     position: relative;
     display: block;
     height: 4px;
-	width: 100%;
-	backgro
+    width: 100%;
+    background: #d16dff;
+    transform: scaleX(0);
+	transform-origin: 0%;
+	/* left to right  */
+
+	transition: transform 500ms ease;
+	top: 2px;
+  }
+
+  .field:focus-within{
+	  border-color: transparent;
+  }
+  .field:focus-within::after{
+	  transform: scaleX(1);
   }
 
   .input {
