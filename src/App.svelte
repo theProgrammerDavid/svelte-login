@@ -20,6 +20,18 @@
     font-size: 1.2rem;
   }
 
+  .label {
+    z-index: -1;
+    position: absolute;
+    transform: translateY(-2rem);
+    transform-origin: 0%;
+    transition: transform 400ms;
+  }
+  .field:focus-within .label,
+  .input:not(:placeholder-shown) + .label{
+    transform: scale(0.8) translateY(-5rem);
+  }
+
   .field::after {
     content: "";
     position: relative;
@@ -28,18 +40,18 @@
     width: 100%;
     background: #d16dff;
     transform: scaleX(0);
-	transform-origin: 0%;
-	/* left to right  */
+    transform-origin: 0%;
+    /* left to right  */
 
-	transition: transform 500ms ease;
-	top: 2px;
+    transition: transform 500ms ease;
+    top: 2px;
   }
 
-  .field:focus-within{
-	  border-color: transparent;
+  .field:focus-within {
+    border-color: transparent;
   }
-  .field:focus-within::after{
-	  transform: scaleX(1);
+  .field:focus-within::after {
+    transform: scaleX(1);
   }
 
   .input {
